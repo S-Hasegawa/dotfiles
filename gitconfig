@@ -1,0 +1,28 @@
+[user]
+    name = Suguru Hasegawa
+    email = suguru_hasegawa@voyagegroup.com
+[core]
+    editor = vim
+    pager = less -r
+    excludefile = ~/.gitignore
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    grep = auto
+    interactive = auto
+    blame = auto
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch --verbose
+    ls = log --oneline --stat --graph
+    gr = grep -n
+# improve git diff
+[pager]
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
+[diff]
+    compactionHeuristic = true
