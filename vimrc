@@ -53,6 +53,7 @@ NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'faith/vim-go'
 
 call neobundle#end()
 
@@ -203,6 +204,11 @@ let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 
 " jsはjshintでチェック
 let g:syntastic_javascript_checkers = ['jshint']
+
+" goはvim-goと併用
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['go']}
+let g:go_list_type = "quickfix"
 
 """ {{{
 "
@@ -358,11 +364,18 @@ set laststatus=2
 " ### 開く拡張子によってインデント数を変更する ###
 augroup fileTypeIndent
     autocmd!
+    " python
     autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    " ruby
     autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    " php
     autocmd BufNewFile,BufRead *.php setlocal tabstop=4 softtabstop=4 shiftwidth=4
+    " javascript
     autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    " html
     autocmd BufNewFile,BufRead *.html setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    " go タブは公式でハード利用を推奨されているので注意
+    autocmd BufNewFile,BufRead *.go setlocal tabstop=4 noexpandtab shiftwidth=4
 augroup END
 
 " ### その他の設定 ###
