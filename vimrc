@@ -37,7 +37,7 @@ NeoBundle 'Shougo/vimproc', {
 " プラグイン管理
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'Shougo/neocomplcache'
+" NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'nvie/vim-flake8'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
@@ -53,7 +53,8 @@ NeoBundle 'Quramy/tsuquyomi'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'faith/vim-go'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'hashivim/vim-terraform'
 
 call neobundle#end()
 
@@ -169,6 +170,10 @@ endfunction
 " syntasticレコメンセッティング
 " https://github.com/scrooloose/syntastic#3-recommended-settings
 
+" checker動いてない？というときはデバッグモードにして各チェッカのメッセージを見てみよう
+" 参考: https://github.com/vim-syntastic/syntastic/issues/1631#issuecomment-223767344
+" let g:syntastic_debug = 3
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -203,12 +208,31 @@ let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
 
 " jsはjshintでチェック
-let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_checkers = ['jshint']
+" eslintを使う場合はこちら
+let g:syntastic_javascript_checkers = ['eslint']
 
 " goはvim-goと併用
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['go']}
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck', 'go']
 let g:go_list_type = "quickfix"
+
+""" {{{
+"
+"  vim-go
+"  公式ドキュメントをよく読むべし https://github.com/fatih/vim-go
+"
+""" {{{
+
+" シンタックスハイライト有効
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+" importの自動挿入にはgoimportsを使う
+let g:go_fmt_command = "goimports"
 
 """ {{{
 "
