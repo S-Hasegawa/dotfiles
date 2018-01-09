@@ -5,7 +5,7 @@
     editor = vim
     pager = less -r
     excludefile = ~/.gitignore
-	quotepath = false
+    quotepath = false
 [color]
     diff = auto
     status = auto
