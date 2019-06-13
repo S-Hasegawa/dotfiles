@@ -63,6 +63,22 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
-
 # 便利ツール direnv を有効化
 if which direnv > /dev/null; then eval "$(direnv hook bash)"; fi
+
+# headlessをコマンドラインから使うためのalias
+alias google-chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+
+# google cloud sdkの初期化
+source /Users/s-hasegawa/work/google-cloud-sdk/completion.bash.inc
+source /Users/s-hasegawa/work/google-cloud-sdk/path.bash.inc
+
+## pipenv設定
+# virtualenv（.venvディレクトリ）をプロジェクト内に作る
+#デフォルトはユーザのhomeディレクトリ
+export PIPENV_VENV_IN_PROJECT=true
+
+# opensslの利用を伴うコンパイルは次の環境変数が無いとコケるかも（例: pythonのmysqlclient）
+# ref: https://medium.com/@shandou/pipenv-install-mysqlclient-on-macosx-7c253b0112f2
+# export LDFLAGS="-L/usr/local/opt/openssl/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl/include"
